@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% load static %}<!doctype html>
 <html lang="es">
 <head>
@@ -22,3 +23,46 @@
   <main>{% block contenido %}{% endblock %}</main>
 </body>
 </html>
+=======
+{% load static %}<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Red barrial{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="stylesheet" href="{% static 'css/deposito.css' %}">
+</head>
+<body>
+  <div class="franja-bandera" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header>
+    <div class="identidad">
+      {# Poné el logo en app/src/static/img/unahur.png. Si no existe, se muestra el texto UNAHUR. #}
+      <span class="logo-unahur">
+        <img src="{% static 'img/unahur.png' %}" alt="UNAHUR"
+             onerror="this.replaceWith(document.createTextNode('UNAHUR'))">
+      </span>
+      <a class="marca" href="{% url 'home' %}">Red barrial · Banco de alimentos</a>
+    </div>
+    <nav>
+      {% if user.is_authenticated %}
+        <span>{{ user.get_full_name|default:user.username }}</span>
+        <form method="post" action="{% url 'oidc_logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="secundario">Salir</button>
+        </form>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main>{% block contenido %}{% endblock %}</main>
+
+  <footer>
+    <div><strong>Arquitectura de Software</strong> · Universidad Nacional de Hurlingham</div>
+    <div>Profesor: Nicolás Ríos</div>
+    <div>Estudiantes: DiSalvo · Olson · Robledo · Vera</div>
+    <div class="fin-franja" aria-hidden="true"><span></span><span></span><span></span></div>
+  </footer>
+</body>
+</html>
+>>>>>>> 0ce6e2b (se modificó nada más la pantalla de inicio)
